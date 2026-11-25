@@ -17,9 +17,9 @@
   }
 
   function transferNote(a, b) {
-    if (a.service.line.code === '1' && b.service.line.code === '1') return '同线换车';
-    if ([a, b].some(node => ['R2', 'RB'].includes(node.service.line.code))) return '出站步行换乘';
-    return '换乘';
+    if (a.service.line.code === '1' && b.service.line.code === '1') return 'sameLine';
+    if ([a, b].some(node => ['R2', 'RB'].includes(node.service.line.code))) return 'walkTransfer';
+    return 'transfer';
   }
 
   function build(lines, stationByName) {
@@ -35,8 +35,8 @@
       });
 
       function connectRide(from, to) {
-        from.edges.push({ to, kind: 'ride', direction: service.loop ? '内环' : stops[stops.length - 1] });
-        to.edges.push({ to: from, kind: 'ride', direction: service.loop ? '外环' : stops[0] });
+        from.edges.push({ to, kind: 'ride', direction: service.loop ? 'inner' : stops[stops.length - 1] });
+        to.edges.push({ to: from, kind: 'ride', direction: service.loop ? 'outer' : stops[0] });
       }
 
       for (let i = 1; i < nodes.length; i++) connectRide(nodes[i - 1], nodes[i]);
@@ -58,7 +58,7 @@
     // 10号线站厅和19/30号线站厅分设在高铁站两侧。
     const airportWest = byStation.get('双流机场2航站楼') || [];
     const airportEast = byStation.get('双流机场2航站楼东') || [];
-    airportWest.forEach(a => airportEast.forEach(b => connectTransfer(a, b, '出闸步行换乘')));
+    airportWest.forEach(a => airportEast.forEach(b => connectTransfer(a, b, 'walkTransferGate')));
 
     return { find: (origin, destination) => find(byStation, origin, destination) };
   }

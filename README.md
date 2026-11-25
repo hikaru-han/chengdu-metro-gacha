@@ -2,7 +2,7 @@
 
 [简体中文（默认）](#简体中文) · [日本語](#日本語) · [한국어](#한국어) · [English](#english)
 
-> **默认界面语言：简体中文。** 本 README 提供简体中文、日语、韩语和英语说明；网站界面目前为简体中文，站点卡同时展示站名英文。
+> **默认界面语言：简体中文。** 界面可在「中文 / English」之间随时切换，也可在网址后加 `?lang=en` 以英文打开。本 README 提供简体中文、日语、韩语和英语说明；站点卡同时展示中英文站名。
 
 ## 简体中文
 
@@ -17,6 +17,7 @@
 - 开启“只抽未收集的站”，逐步收集图鉴；可选开启出行挑战卡。
 - 选择出发站后查看按站表估算的线路和换乘提示，并打开地图、百度百科或分享站点。
 - 支持浅色、深色和跟随系统的主题。
+- 界面支持简体中文和 English，可随时切换。
 
 暂未开通、暂停运营的车站以及仅供换乘的天府站不参与抽选。换乘提示是按站点数据估算的，请以实际列车停站、运营时间及成都轨道集团公告为准。
 
@@ -32,7 +33,7 @@ python -m http.server 8000
 
 ### 部署
 
-网站作为静态文件发布在 GitHub Pages。仓库根目录中的 `index.html`、`stations.json`、`route.js`、`manifest.webmanifest` 和 `icon.svg` 需要一并发布；如果从 GitHub Pages 设置部署，请将发布源配置为包含这些文件的分支和根目录。
+网站作为静态文件发布在 GitHub Pages。仓库根目录中的 `index.html`、`i18n.js`、`stations.json`、`route.js`、`manifest.webmanifest` 和 `icon.svg` 需要一并发布；如果从 GitHub Pages 设置部署，请将发布源配置为包含这些文件的分支和根目录。
 
 ### 隐私与数据
 
@@ -53,6 +54,7 @@ python -m http.server 8000
 - 「未収集の駅のみ」を有効にして図鑑を集めたり、任意でお出かけチャレンジを表示したりできます。
 - 出発駅を選ぶと、駅データに基づく経路・乗り換え案内を表示します。地図、百度百科、共有機能も利用できます。
 - ライト、ダーク、システム設定に合わせたテーマに対応しています。
+- インターフェースは簡体字中国語と英語に対応し、いつでも切り替えられます。
 
 未開業駅、運休中の駅、および乗り換え専用の天府站は抽選対象外です。経路案内は駅データに基づく目安です。実際の停車駅・運行時間と成都軌道交通グループの公式発表をご確認ください。
 
@@ -68,7 +70,7 @@ python -m http.server 8000
 
 ### デプロイ
 
-このサイトは静的ファイルとして GitHub Pages で公開されています。`index.html`、`stations.json`、`route.js`、`manifest.webmanifest`、`icon.svg` をまとめて公開してください。GitHub Pages の設定からデプロイする場合は、これらのファイルを含むブランチとルートディレクトリを公開元に指定します。
+このサイトは静的ファイルとして GitHub Pages で公開されています。`index.html`、`i18n.js`、`stations.json`、`route.js`、`manifest.webmanifest`、`icon.svg` をまとめて公開してください。GitHub Pages の設定からデプロイする場合は、これらのファイルを含むブランチとルートディレクトリを公開元に指定します。
 
 ### プライバシーとデータ
 
@@ -89,6 +91,7 @@ python -m http.server 8000
 - ‘미수집 역만 뽑기’를 켜서 도감을 모으거나, 선택적으로 외출 챌린지를 받을 수 있습니다.
 - 출발역을 선택하면 역 데이터 기준의 경로와 환승 안내를 표시합니다. 지도, 바이두 백과사전, 공유 기능도 제공합니다.
 - 라이트, 다크, 시스템 설정에 따른 테마를 지원합니다.
+- 인터페이스는 중국어 간체와 영어를 지원하며 언제든 전환할 수 있습니다.
 
 개통 전 역, 운행 중단 역, 환승 전용 톈푸역은 추첨 대상에서 제외됩니다. 경로 안내는 역 데이터를 기반으로 한 참고 정보입니다. 실제 정차역과 운행 시간, 청두 철도교통 그룹의 공식 공지를 확인해 주세요.
 
@@ -104,7 +107,7 @@ python -m http.server 8000
 
 ### 배포
 
-이 사이트는 정적 파일로 GitHub Pages에 게시되어 있습니다. `index.html`, `stations.json`, `route.js`, `manifest.webmanifest`, `icon.svg`를 함께 게시해야 합니다. GitHub Pages 설정에서 배포하는 경우 해당 파일이 포함된 브랜치와 루트 디렉터리를 게시 원본으로 지정하세요.
+이 사이트는 정적 파일로 GitHub Pages에 게시되어 있습니다. `index.html`, `i18n.js`, `stations.json`, `route.js`, `manifest.webmanifest`, `icon.svg`를 함께 게시해야 합니다. GitHub Pages 설정에서 배포하는 경우 해당 파일이 포함된 브랜치와 루트 디렉터리를 게시 원본으로 지정하세요.
 
 ### 개인정보 및 데이터
 
@@ -125,6 +128,7 @@ A free web app that randomly picks an eligible Chengdu Metro station to inspire 
 - Collect new stations with the “Undiscovered stations only” option, and optionally enable travel challenge cards.
 - Choose an origin station to see an estimated route and transfer guidance based on the station data. Open map and Baidu Baike links, or share a station.
 - Choose a light, dark, or system-matched theme.
+- Switch the interface between Simplified Chinese and English at any time.
 
 Unopened and suspended stations, along with Tianfu Station (transfer-only), are excluded from draws. Route guidance is an estimate based on station data; check actual stops, operating hours, and official Chengdu Metro announcements before traveling.
 
@@ -140,7 +144,7 @@ Then visit <http://localhost:8000/>.
 
 ### Deployment
 
-The site is published on GitHub Pages as static files. Publish `index.html`, `stations.json`, `route.js`, `manifest.webmanifest`, and `icon.svg` together. To deploy through GitHub Pages settings, select the branch and repository root directory containing these files as the publishing source.
+The site is published on GitHub Pages as static files. Publish `index.html`, `i18n.js`, `stations.json`, `route.js`, `manifest.webmanifest`, and `icon.svg` together. To deploy through GitHub Pages settings, select the branch and repository root directory containing these files as the publishing source.
 
 ### Privacy and data
 
