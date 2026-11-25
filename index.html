@@ -22,6 +22,11 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="下一站去哪儿 — 成都地铁扭蛋">
 <meta property="og:description" content="随机抽一座成都地铁站，在没听过的站下车走走看">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:locale:alternate" content="en_US">
+<link rel="alternate" hreflang="zh-CN" href="https://hikaru-han.github.io/chengdu-metro-gacha/">
+<link rel="alternate" hreflang="en" href="https://hikaru-han.github.io/chengdu-metro-gacha/?lang=en">
+<link rel="alternate" hreflang="x-default" href="https://hikaru-han.github.io/chengdu-metro-gacha/">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"下一站去哪儿 — 成都地铁扭蛋","description":"成都地铁随机选站扭蛋：按线路筛选，单抽或十连。","applicationCategory":"TravelApplication","operatingSystem":"Any","inLanguage":"zh-CN","offers":{"@type":"Offer","price":"0","priceCurrency":"CNY"}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -220,6 +225,11 @@ footer a{color:var(--sub)}
   background:color-mix(in srgb,var(--c) 13%,var(--card))}
 .dex-st.on i{background:var(--c);border:0}
 .dex-st.on:hover{transform:translateY(-1px)}
+/* 英文站名较长：图鉴格子放宽到两行，避免只看到开头几个字母 */
+html[lang="en"] .dex-grid{grid-template-columns:repeat(auto-fill,minmax(112px,1fr))}
+html[lang="en"] .dex-st{white-space:normal;line-height:1.3;align-items:flex-start}
+html[lang="en"] .dex-st i{margin-top:3px}
+html[lang="en"] .dex-st span{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
 html.dark .dex-st.on{border-color:color-mix(in srgb,var(--c) 45%,#fff);background:color-mix(in srgb,var(--c) 22%,var(--card))}
 html.dark .dex-st.on i{background:color-mix(in srgb,var(--c) 45%,#fff)}
 .dex-st.new{animation:stamp .5s cubic-bezier(.2,1.25,.35,1) both}
@@ -234,7 +244,10 @@ html.dark .dex-st.on i{background:color-mix(in srgb,var(--c) 45%,#fff)}
   box-shadow:0 10px 26px rgba(0,0,0,.28);pointer-events:none;
   opacity:0;transform:translate(-50%,14px);transition:opacity .3s,transform .3s cubic-bezier(.2,.85,.3,1)}
 .toast.on{opacity:1;transform:translate(-50%,0)}
-@media(max-width:420px){.dex{padding:15px}.dex-grid{grid-template-columns:repeat(auto-fill,minmax(84px,1fr))}}
+@media(max-width:420px){.dex{padding:15px}.dex-grid{grid-template-columns:repeat(auto-fill,minmax(84px,1fr))}
+  html[lang="en"] .dex-grid{grid-template-columns:repeat(auto-fill,minmax(100px,1fr))}}
+@media(max-width:380px){.brand{font-size:1.02rem;gap:7px}.brand svg{width:29px;height:29px}
+  .header-actions{gap:6px}.help-btn,#theme-btn{padding:6px 10px;font-size:.75rem}}
 /* ---------- 出行挑战卡 ---------- */
 .challenge{
   display:none;width:100%;max-width:440px;position:relative;overflow:hidden;
@@ -555,8 +568,17 @@ var hist=[];
 var lang='zh',requestedLang=null,savedLang=null;
 try{requestedLang=new URLSearchParams(location.search).get('lang')}catch(e){}
 try{savedLang=localStorage.getItem('cdgacha-lang')}catch(e){}
-if(requestedLang==='en'||requestedLang==='zh')lang=requestedLang;
+if(requestedLang&&/^en/i.test(requestedLang))lang='en';
+else if(requestedLang&&/^zh/i.test(requestedLang))lang='zh';
 else if(savedLang==='en'||savedLang==='zh')lang=savedLang;
+function syncLangUrl(){
+  try{
+    var u=new URL(location.href);
+    u.searchParams.delete('lang');
+    if(lang==='en')u.searchParams.set('lang','en');
+    history.replaceState(history.state,'',u.pathname+u.search+u.hash);
+  }catch(e){}
+}
 function t(key,vars){
   var text=(MetroI18n[lang]&&MetroI18n[lang][key])||MetroI18n.zh[key]||key;
   if(vars)Object.keys(vars).forEach(function(k){text=text.split('{'+k+'}').join(vars[k])});
@@ -583,6 +605,8 @@ function applyLanguage(){
   document.querySelector('meta[name="description"]').content=t('metaDescription');
   document.querySelector('meta[property="og:title"]').content=t('ogTitle');
   document.querySelector('meta[property="og:description"]').content=t('ogDescription');
+  var ogLocale=document.querySelector('meta[property="og:locale"]');
+  if(ogLocale)ogLocale.content=lang==='en'?'en_US':'zh_CN';
   document.querySelectorAll('[data-i18n]').forEach(function(el){el.textContent=t(el.dataset.i18n)});
   document.querySelectorAll('[data-i18n-aria]').forEach(function(el){el.setAttribute('aria-label',t(el.dataset.i18nAria))});
   document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el){el.setAttribute('placeholder',t(el.dataset.i18nPlaceholder))});
@@ -601,6 +625,7 @@ document.querySelectorAll('.lang-opt').forEach(function(b){
     lang=b.dataset.lang;
     try{localStorage.setItem('cdgacha-lang',lang)}catch(e){}
     applyLanguage();
+    syncLangUrl();
   });
 });
 var $=function(id){return document.getElementById(id)};
@@ -650,7 +675,7 @@ fetch('stations.json').then(function(r){return r.json()}).then(function(lines){
   try{
     var q=new URLSearchParams(location.search).get('station');
     var st=q&&stationById.get(q);
-    if(st){showStation(st);history.replaceState(null,'',location.pathname)}
+    if(st){showStation(st);history.replaceState(null,'',location.pathname+(lang==='en'?'?lang=en':''))}
   }catch(e){}
   loadHist();
 }).catch(function(){
@@ -974,6 +999,9 @@ function showTen(list,silent){
 function baikeName(s){
   return s.name==='中医大省医院'?'中医大·省医院':s.name;
 }
+function stationUrl(s){
+  return location.origin+location.pathname+'?station='+s.id+(lang==='en'?'&lang=en':'');
+}
 function setupShare(s,quiet){
   shareRow.style.display='flex';
   if(!quiet){shareRow.classList.remove('appear');void shareRow.offsetWidth;shareRow.classList.add('appear')}
@@ -983,14 +1011,14 @@ function setupShare(s,quiet){
   amapLink.href='https://uri.amap.com/search?keyword='+q+'&city=成都';
   baiduLink.href='https://map.baidu.com/search/'+encodeURIComponent(s.name+'地铁站')+'/@11580000,3560000,12z';
   $('copy-link').onclick=function(){
-    var url=location.origin+location.pathname+'?station='+s.id;
+    var url=stationUrl(s);
     (navigator.clipboard?navigator.clipboard.writeText(url):Promise.reject()).then(function(){
       $('copy-link').textContent=t('copyDone');
       setTimeout(function(){$('copy-link').textContent=t('copyLink')},1500);
     }).catch(function(){prompt(t('promptCopy'),url)});
   };
   $('sys-share').onclick=function(){
-    var url=location.origin+location.pathname+'?station='+s.id;
+    var url=stationUrl(s);
     var text=t('shareText',{name:stationLabel(s)})+
       (challengeEnabled&&current===s&&currentChallenge?t('shareChallenge',{text:currentChallenge.text}):'');
     if(navigator.share){navigator.share({title:t('shareTitle',{name:stationLabel(s)}),text:text,url:url}).catch(function(){})}
