@@ -52,7 +52,7 @@ python -m http.server 8000
 - 1駅抽選または10連抽選。複数路線を同時に絞り込めます。
 - 駅の英語名と路線を確認できます。抽選した駅は駅図鑑に自動登録され、最近の抽選履歴からも見返せます。
 - 「未収集の駅のみ」を有効にして図鑑を集めたり、任意でお出かけチャレンジを表示したりできます。
-- 出発駅を選ぶと、駅データに基づく経路・乗り換え案内を表示します。地図、百度百科、共有機能も利用できます。
+- 出発駅を選ぶと、駅データに基づく経路・乗り換え案内を表示します。地図、百科事典（英語表示ではウィキペディア）、共有機能も利用できます。
 - ライト、ダーク、システム設定に合わせたテーマに対応しています。
 - インターフェースは簡体字中国語と英語に対応し、いつでも切り替えられます。
 
@@ -89,7 +89,7 @@ python -m http.server 8000
 - 한 역 뽑기 또는 10연속 뽑기를 지원하며, 여러 노선을 동시에 필터링할 수 있습니다.
 - 역의 영문명과 노선을 확인할 수 있습니다. 뽑은 역은 역 도감에 자동으로 추가되며 최근 뽑기 기록에서 다시 볼 수 있습니다.
 - ‘미수집 역만 뽑기’를 켜서 도감을 모으거나, 선택적으로 외출 챌린지를 받을 수 있습니다.
-- 출발역을 선택하면 역 데이터 기준의 경로와 환승 안내를 표시합니다. 지도, 바이두 백과사전, 공유 기능도 제공합니다.
+- 출발역을 선택하면 역 데이터 기준의 경로와 환승 안내를 표시합니다. 지도, 백과사전(영어 화면에서는 위키백과), 공유 기능도 제공합니다.
 - 라이트, 다크, 시스템 설정에 따른 테마를 지원합니다.
 - 인터페이스는 중국어 간체와 영어를 지원하며 언제든 전환할 수 있습니다.
 
@@ -126,7 +126,7 @@ A free web app that randomly picks an eligible Chengdu Metro station to inspire 
 - Draw one station or ten at a time; filter by multiple metro lines.
 - View station names in English and their lines. Drawn stations are added to the station collection, and recent draws can be revisited.
 - Collect new stations with the “Undiscovered stations only” option, and optionally enable travel challenge cards.
-- Choose an origin station to see an estimated route and transfer guidance based on the station data. Open map and Baidu Baike links, or share a station.
+- Choose an origin station to see an estimated route and transfer guidance based on the station data. Open map and Wikipedia links, or share a station.
 - Choose a light, dark, or system-matched theme.
 - Switch the interface between Simplified Chinese and English at any time.
 

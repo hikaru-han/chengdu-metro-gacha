@@ -1005,7 +1005,11 @@ function stationUrl(s){
 function setupShare(s,quiet){
   shareRow.style.display='flex';
   if(!quiet){shareRow.classList.remove('appear');void shareRow.offsetWidth;shareRow.classList.add('appear')}
-  $('wiki-link').href='https://baike.baidu.com/item/'+encodeURIComponent(baikeName(s)+'站');
+  if(lang==='en'){
+    $('wiki-link').href='https://en.wikipedia.org/w/index.php?search='+encodeURIComponent(stationLabel(s)+' Chengdu Metro')+'&ns0=1';
+  }else{
+    $('wiki-link').href='https://baike.baidu.com/item/'+encodeURIComponent(baikeName(s)+'站');
+  }
   $('wiki-link').title=t('wikiTitle',{name:stationLabel(s)});
   var q=encodeURIComponent(s.name+'地铁站 成都');
   amapLink.href='https://uri.amap.com/search?keyword='+q+'&city=成都';
