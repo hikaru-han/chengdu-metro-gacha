@@ -24,13 +24,17 @@
 <meta property="og:description" content="随机抽一座成都地铁站，在没听过的站下车走走看">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:locale:alternate" content="en_US">
+<meta property="og:locale:alternate" content="ja_JP">
+<meta property="og:locale:alternate" content="ko_KR">
 <link rel="alternate" hreflang="zh-CN" href="https://hikaru-han.github.io/chengdu-metro-gacha/">
 <link rel="alternate" hreflang="en" href="https://hikaru-han.github.io/chengdu-metro-gacha/?lang=en">
+<link rel="alternate" hreflang="ja" href="https://hikaru-han.github.io/chengdu-metro-gacha/?lang=ja">
+<link rel="alternate" hreflang="ko" href="https://hikaru-han.github.io/chengdu-metro-gacha/?lang=ko">
 <link rel="alternate" hreflang="x-default" href="https://hikaru-han.github.io/chengdu-metro-gacha/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"下一站去哪儿 — 成都地铁扭蛋","description":"成都地铁随机选站扭蛋：按线路筛选，单抽或十连。","applicationCategory":"TravelApplication","operatingSystem":"Any","inLanguage":"zh-CN","offers":{"@type":"Offer","price":"0","priceCurrency":"CNY"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"下一站去哪儿 — 成都地铁扭蛋","description":"成都地铁随机选站扭蛋：按线路筛选，单抽或十连。","applicationCategory":"TravelApplication","operatingSystem":"Any","inLanguage":["zh-CN","en","ja","ko"],"offers":{"@type":"Offer","price":"0","priceCurrency":"CNY"}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 <style>
 :root{
   --bg:#faf7f2;--card:#ffffff;--ink:#1d1a16;--sub:#7a7267;--line:#e8e2d8;
@@ -47,6 +51,8 @@ body{
   min-height:100vh;overflow-x:hidden;touch-action:manipulation;
   transition:background .3s,color .3s;
 }
+html[lang="ja"] body{font-family:'Noto Sans JP','Noto Sans SC',system-ui,sans-serif}
+html[lang="ko"] body{font-family:'Noto Sans KR','Noto Sans SC',system-ui,sans-serif}
 .wrap{max-width:640px;margin:0 auto;padding:20px 18px 80px}
 header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
 .brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:1.15rem;letter-spacing:.02em}
@@ -225,11 +231,11 @@ footer a{color:var(--sub)}
   background:color-mix(in srgb,var(--c) 13%,var(--card))}
 .dex-st.on i{background:var(--c);border:0}
 .dex-st.on:hover{transform:translateY(-1px)}
-/* 英文站名较长：图鉴格子放宽到两行，避免只看到开头几个字母 */
-html[lang="en"] .dex-grid{grid-template-columns:repeat(auto-fill,minmax(112px,1fr))}
-html[lang="en"] .dex-st{white-space:normal;line-height:1.3;align-items:flex-start}
-html[lang="en"] .dex-st i{margin-top:3px}
-html[lang="en"] .dex-st span{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+/* 英文站名较长：图鉴格子放宽到两行，避免只看到开头几个字母（韩语界面同样显示英文名） */
+html[lang="en"] .dex-grid,html[lang="ko"] .dex-grid{grid-template-columns:repeat(auto-fill,minmax(112px,1fr))}
+html[lang="en"] .dex-st,html[lang="ko"] .dex-st{white-space:normal;line-height:1.3;align-items:flex-start}
+html[lang="en"] .dex-st i,html[lang="ko"] .dex-st i{margin-top:3px}
+html[lang="en"] .dex-st span,html[lang="ko"] .dex-st span{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
 html.dark .dex-st.on{border-color:color-mix(in srgb,var(--c) 45%,#fff);background:color-mix(in srgb,var(--c) 22%,var(--card))}
 html.dark .dex-st.on i{background:color-mix(in srgb,var(--c) 45%,#fff)}
 .dex-st.new{animation:stamp .5s cubic-bezier(.2,1.25,.35,1) both}
@@ -245,7 +251,7 @@ html.dark .dex-st.on i{background:color-mix(in srgb,var(--c) 45%,#fff)}
   opacity:0;transform:translate(-50%,14px);transition:opacity .3s,transform .3s cubic-bezier(.2,.85,.3,1)}
 .toast.on{opacity:1;transform:translate(-50%,0)}
 @media(max-width:420px){.dex{padding:15px}.dex-grid{grid-template-columns:repeat(auto-fill,minmax(84px,1fr))}
-  html[lang="en"] .dex-grid{grid-template-columns:repeat(auto-fill,minmax(100px,1fr))}}
+  html[lang="en"] .dex-grid,html[lang="ko"] .dex-grid{grid-template-columns:repeat(auto-fill,minmax(100px,1fr))}}
 @media(max-width:380px){.brand{font-size:1.02rem;gap:7px}.brand svg{width:29px;height:29px}
   .header-actions{gap:6px}.help-btn,#theme-btn{padding:6px 10px;font-size:.75rem}}
 /* ---------- 出行挑战卡 ---------- */
@@ -393,6 +399,8 @@ html.dark .dex-st.on i{background:color-mix(in srgb,var(--c) 45%,#fff)}
     <span class="lang-seg" id="lang-seg" role="group" aria-label="界面语言" data-i18n-aria="languageGroup">
       <button class="lang-opt" type="button" data-lang="zh" aria-pressed="false">中文</button>
       <button class="lang-opt" type="button" data-lang="en" aria-pressed="false">English</button>
+      <button class="lang-opt" type="button" data-lang="ja" aria-pressed="false">日本語</button>
+      <button class="lang-opt" type="button" data-lang="ko" aria-pressed="false">한국어</button>
     </span>
   </div>
 
@@ -568,14 +576,24 @@ var hist=[];
 var lang='zh',requestedLang=null,savedLang=null;
 try{requestedLang=new URLSearchParams(location.search).get('lang')}catch(e){}
 try{savedLang=localStorage.getItem('cdgacha-lang')}catch(e){}
-if(requestedLang&&/^en/i.test(requestedLang))lang='en';
-else if(requestedLang&&/^zh/i.test(requestedLang))lang='zh';
-else if(savedLang==='en'||savedLang==='zh')lang=savedLang;
+function normLang(v){
+  if(!v)return null;
+  v=String(v).toLowerCase();
+  if(/^zh/.test(v))return 'zh';
+  if(/^en/.test(v))return 'en';
+  if(/^ja/.test(v))return 'ja';
+  if(/^ko/.test(v))return 'ko';
+  return null;
+}
+/* 优先级：网址参数 > 本机保存 > 浏览器语言 */
+var detected=normLang(requestedLang)||normLang(savedLang);
+if(!detected)try{detected=normLang(navigator.language)}catch(e){}
+if(detected)lang=detected;
 function syncLangUrl(){
   try{
     var u=new URL(location.href);
     u.searchParams.delete('lang');
-    if(lang==='en')u.searchParams.set('lang','en');
+    if(lang!=='zh')u.searchParams.set('lang',lang);
     history.replaceState(history.state,'',u.pathname+u.search+u.hash);
   }catch(e){}
 }
@@ -589,8 +607,10 @@ function lineLabel(line){
   var key='line'+line.code;
   return hasText(key)?MetroI18n[lang][key]:line.name;
 }
+/* 英语、韩语界面用英文站名；中文、日语界面用汉字站名 */
+function usesEnglishNames(){return lang==='en'||lang==='ko'}
 function stationLabel(s){
-  return lang==='en'&&s.en?s.en:s.name;
+  return usesEnglishNames()&&s.en?s.en:s.name;
 }
 function stationLabelByName(name){
   var s=stationByName.get(name);
@@ -600,13 +620,14 @@ function challengeList(){
   return (MetroI18n[lang]&&MetroI18n[lang].challenges)||MetroI18n.zh.challenges;
 }
 function applyLanguage(){
-  document.documentElement.lang=lang==='en'?'en':'zh-CN';
+  var HTML_LANG={zh:'zh-CN',en:'en',ja:'ja',ko:'ko'},OG_LOCALE={zh:'zh_CN',en:'en_US',ja:'ja_JP',ko:'ko_KR'};
+  document.documentElement.lang=HTML_LANG[lang];
   document.title=t('metaTitle');
   document.querySelector('meta[name="description"]').content=t('metaDescription');
   document.querySelector('meta[property="og:title"]').content=t('ogTitle');
   document.querySelector('meta[property="og:description"]').content=t('ogDescription');
   var ogLocale=document.querySelector('meta[property="og:locale"]');
-  if(ogLocale)ogLocale.content=lang==='en'?'en_US':'zh_CN';
+  if(ogLocale)ogLocale.content=OG_LOCALE[lang];
   document.querySelectorAll('[data-i18n]').forEach(function(el){el.textContent=t(el.dataset.i18n)});
   document.querySelectorAll('[data-i18n-aria]').forEach(function(el){el.setAttribute('aria-label',t(el.dataset.i18nAria))});
   document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el){el.setAttribute('placeholder',t(el.dataset.i18nPlaceholder))});
@@ -675,7 +696,7 @@ fetch('stations.json').then(function(r){return r.json()}).then(function(lines){
   try{
     var q=new URLSearchParams(location.search).get('station');
     var st=q&&stationById.get(q);
-    if(st){showStation(st);history.replaceState(null,'',location.pathname+(lang==='en'?'?lang=en':''))}
+    if(st){showStation(st);history.replaceState(null,'',location.pathname+(lang!=='zh'?'?lang='+lang:''))}
   }catch(e){}
   loadHist();
 }).catch(function(){
@@ -956,10 +977,10 @@ function showStation(s,fromHist,opts){
   current=s;
   slot.style.display='none';tenList.style.display='none';hintArea.style.display='none';
   finalBox.style.display='block';
-  var secondary=lang==='en'?s.name:(s.en||'');
+  var secondary=usesEnglishNames()?s.name:(s.en||'');
   stName.textContent=stationLabel(s);
   stPy.textContent=secondary||'CHENGDU METRO';
-  stPy.setAttribute('lang',lang==='en'?'zh-CN':'en');
+  stPy.setAttribute('lang',usesEnglishNames()?'zh-CN':'en');
   if(s.statusKey){stPy.textContent+=' · '+t(s.statusKey);stPy.removeAttribute('lang')}
   stLines.innerHTML='';
   s.lines.forEach(function(l){
@@ -1000,15 +1021,18 @@ function baikeName(s){
   return s.name==='中医大省医院'?'中医大·省医院':s.name;
 }
 function stationUrl(s){
-  return location.origin+location.pathname+'?station='+s.id+(lang==='en'?'&lang=en':'');
+  return location.origin+location.pathname+'?station='+s.id+(lang!=='zh'?'&lang='+lang:'');
 }
 function setupShare(s,quiet){
   shareRow.style.display='flex';
   if(!quiet){shareRow.classList.remove('appear');void shareRow.offsetWidth;shareRow.classList.add('appear')}
-  if(lang==='en'){
-    $('wiki-link').href='https://en.wikipedia.org/w/index.php?search='+encodeURIComponent(stationLabel(s)+' Chengdu Metro')+'&ns0=1';
-  }else{
+  /* 中文链接百度百科，其余语言链接对应语种的维基百科 */
+  if(lang==='zh'){
     $('wiki-link').href='https://baike.baidu.com/item/'+encodeURIComponent(baikeName(s)+'站');
+  }else{
+    var WIKI_SEARCH={en:'https://en.wikipedia.org/w/index.php?search=',ja:'https://ja.wikipedia.org/w/index.php?search=',ko:'https://ko.wikipedia.org/w/index.php?search='};
+    var query=lang==='ja'?s.name+'駅':stationLabel(s)+' Chengdu Metro';
+    $('wiki-link').href=WIKI_SEARCH[lang]+encodeURIComponent(query)+'&ns0=1';
   }
   $('wiki-link').title=t('wikiTitle',{name:stationLabel(s)});
   var q=encodeURIComponent(s.name+'地铁站 成都');

@@ -2,7 +2,7 @@
 
 [简体中文（默认）](#简体中文) · [日本語](#日本語) · [한국어](#한국어) · [English](#english)
 
-> **默认界面语言：简体中文。** 界面可在「中文 / English」之间随时切换，也可在网址后加 `?lang=en` 以英文打开。本 README 提供简体中文、日语、韩语和英语说明；站点卡同时展示中英文站名。
+> **默认界面语言：简体中文。** 界面可在「中文 / English / 日本語 / 한국어」之间随时切换，也可在网址后加 `?lang=en`、`?lang=ja` 或 `?lang=ko` 以对应语言打开；没有选择记录时会自动匹配浏览器语言。本 README 提供简体中文、日语、韩语和英语说明；站点卡同时展示中英文站名。
 
 ## 简体中文
 
@@ -15,9 +15,9 @@
 - 单抽或十连抽，可同时筛选多条线路。
 - 查看站点英文名和所属线路；抽中的车站会自动加入站点图鉴，也可回看最近抽选记录。
 - 开启“只抽未收集的站”，逐步收集图鉴；可选开启出行挑战卡。
-- 选择出发站后查看按站表估算的线路和换乘提示，并打开地图、百度百科或分享站点。
+- 选择出发站后查看按站表估算的线路和换乘提示，并打开地图、百科（中文界面为百度百科，其他语言为维基百科）或分享站点。
 - 支持浅色、深色和跟随系统的主题。
-- 界面支持简体中文和 English，可随时切换。
+- 界面支持简体中文、English、日本語和 한국어，可随时切换。
 
 暂未开通、暂停运营的车站以及仅供换乘的天府站不参与抽选。换乘提示是按站点数据估算的，请以实际列车停站、运营时间及成都轨道集团公告为准。
 
@@ -52,9 +52,9 @@ python -m http.server 8000
 - 1駅抽選または10連抽選。複数路線を同時に絞り込めます。
 - 駅の英語名と路線を確認できます。抽選した駅は駅図鑑に自動登録され、最近の抽選履歴からも見返せます。
 - 「未収集の駅のみ」を有効にして図鑑を集めたり、任意でお出かけチャレンジを表示したりできます。
-- 出発駅を選ぶと、駅データに基づく経路・乗り換え案内を表示します。地図、百科事典（英語表示ではウィキペディア）、共有機能も利用できます。
+- 出発駅を選ぶと、駅データに基づく経路・乗り換え案内を表示します。地図、百科事典（中国語では百度百科、その他の言語ではウィキペディア）、共有機能も利用できます。
 - ライト、ダーク、システム設定に合わせたテーマに対応しています。
-- インターフェースは簡体字中国語と英語に対応し、いつでも切り替えられます。
+- インターフェースは簡体字中国語・英語・日本語・韓国語に対応し、いつでも切り替えられます。
 
 未開業駅、運休中の駅、および乗り換え専用の天府站は抽選対象外です。経路案内は駅データに基づく目安です。実際の停車駅・運行時間と成都軌道交通グループの公式発表をご確認ください。
 
@@ -89,9 +89,9 @@ python -m http.server 8000
 - 한 역 뽑기 또는 10연속 뽑기를 지원하며, 여러 노선을 동시에 필터링할 수 있습니다.
 - 역의 영문명과 노선을 확인할 수 있습니다. 뽑은 역은 역 도감에 자동으로 추가되며 최근 뽑기 기록에서 다시 볼 수 있습니다.
 - ‘미수집 역만 뽑기’를 켜서 도감을 모으거나, 선택적으로 외출 챌린지를 받을 수 있습니다.
-- 출발역을 선택하면 역 데이터 기준의 경로와 환승 안내를 표시합니다. 지도, 백과사전(영어 화면에서는 위키백과), 공유 기능도 제공합니다.
+- 출발역을 선택하면 역 데이터 기준의 경로와 환승 안내를 표시합니다. 지도, 백과사전(중국어 화면에서는 바이두 백과, 다른 언어에서는 위키백과), 공유 기능도 제공합니다.
 - 라이트, 다크, 시스템 설정에 따른 테마를 지원합니다.
-- 인터페이스는 중국어 간체와 영어를 지원하며 언제든 전환할 수 있습니다.
+- 인터페이스는 중국어 간체·영어·일본어·한국어를 지원하며 언제든 전환할 수 있습니다.
 
 개통 전 역, 운행 중단 역, 환승 전용 톈푸역은 추첨 대상에서 제외됩니다. 경로 안내는 역 데이터를 기반으로 한 참고 정보입니다. 실제 정차역과 운행 시간, 청두 철도교통 그룹의 공식 공지를 확인해 주세요.
 
@@ -126,9 +126,9 @@ A free web app that randomly picks an eligible Chengdu Metro station to inspire 
 - Draw one station or ten at a time; filter by multiple metro lines.
 - View station names in English and their lines. Drawn stations are added to the station collection, and recent draws can be revisited.
 - Collect new stations with the “Undiscovered stations only” option, and optionally enable travel challenge cards.
-- Choose an origin station to see an estimated route and transfer guidance based on the station data. Open map and Wikipedia links, or share a station.
+- Choose an origin station to see an estimated route and transfer guidance based on the station data. Open map and encyclopedia links (Baidu Baike in Chinese, Wikipedia in other languages), or share a station.
 - Choose a light, dark, or system-matched theme.
-- Switch the interface between Simplified Chinese and English at any time.
+- Switch the interface between Simplified Chinese, English, Japanese, and Korean at any time.
 
 Unopened and suspended stations, along with Tianfu Station (transfer-only), are excluded from draws. Route guidance is an estimate based on station data; check actual stops, operating hours, and official Chengdu Metro announcements before traveling.
 
